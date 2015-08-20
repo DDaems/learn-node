@@ -55,7 +55,7 @@ console.log(count)
 /*
 * Exercise 4    "MY FIRST ASYNC I/O!"
 */
-
+/*
 var fs = require('fs')
 
 // collect de value van via een callback function
@@ -67,21 +67,41 @@ var fs = require('fs')
 fs.readFile(process.argv[2], 'utf8', function(err, data){
     console.log(data.split('\n').length - 1)
 })
+*/
 
 
+/*
+* Exercise 5    "FILTER LS"
+*/
 
+var fs = require('fs')
+var path = require('path') // standaard node lib
 
+var filepath = process.argv[2]
+var extention = '.' + process.argv[3]
+fs.readdir(filepath, function(err, list) {
 
+    for (var i = 0; i < list.length; i++) {
+        if (path.extname(list[i]) === extention) {
+            
+            console.log(list[i])
+        }
+    }
+})
 
-
-
-
-
-
-
-
-
-
+// Korter, en beter methode dan de mijne
+// -------------------------------------
+/*
+fs.readdir(process.argv[2], function(err, list) {
+    
+    // voor elk list item runnen we een functie en passen de listitem mee
+    list.forEach(function (file) {
+        if(path.extname(file) === '.' + process.argv[3]) {
+            console.log(file)
+        }
+    })
+})
+*/
 
 
 
