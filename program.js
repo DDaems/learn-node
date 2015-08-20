@@ -73,7 +73,7 @@ fs.readFile(process.argv[2], 'utf8', function(err, data){
 /*
 * Exercise 5    "FILTER LS"
 */
-
+/*
 var fs = require('fs')
 var path = require('path') // standaard node lib
 
@@ -88,7 +88,7 @@ fs.readdir(filepath, function(err, list) {
         }
     }
 })
-
+*/
 // Korter, en beter methode dan de mijne
 // -------------------------------------
 /*
@@ -104,8 +104,24 @@ fs.readdir(process.argv[2], function(err, list) {
 */
 
 
+/*
+* Exercise 6: MAKE IT MODULAR
+*/
+var fs = require('fs')
+var path = require('path') // standaard node lib
+var mymod = require('./mymodule') // laad mijn module
 
-
+var dir = process.argv[2]
+var ext = process.argv[3]
+//mymod.dirScan4Ext
+mymod(dir, ext, function(err, data) {
+    if(err) return callback;
+    //return console.error('There was an error:', err)
+    
+    data.forEach(function(file) {
+        console.log(file)   
+    })
+})
 
 
 
