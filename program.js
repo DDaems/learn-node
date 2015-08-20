@@ -107,6 +107,7 @@ fs.readdir(process.argv[2], function(err, list) {
 /*
 * Exercise 6: MAKE IT MODULAR
 */
+/*
 var fs = require('fs')
 var path = require('path') // standaard node lib
 var mymod = require('./mymodule') // laad mijn module
@@ -122,6 +123,37 @@ mymod(dir, ext, function(err, data) {
         console.log(file)   
     })
 })
+*/
 
 
+/*
+* Exercise 7: HTTP CLIENT
+*/
+/*
+ Write a program that performs an HTTP GET request to a URL provided to you as the first command-line argument. Write the
+ String contents of each "data" event from the response to a new line on the console (stdout).
+ -------------------------------------------------------------------------------
+*/
 
+var http = require('http') // core module
+var url = process.argv[2]
+
+if(url) {
+
+    // "data", "error", "end"
+    http.get(url, function(response) {
+        //console.log(response.statusCode)
+        response.setEncoding('utf8')
+        
+        // Dit was gebruikt in de solutie door de workshopper aangegeven
+        // response.on("data", console.log)
+        // response.on("error", console.error)
+        response.on("data", function(data) {
+            console.log(data)
+        })
+
+    }).on('error', function(e) {
+        
+        console.log("Got error: " + e.message)
+    })
+}

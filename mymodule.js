@@ -30,6 +30,7 @@ module.exports = function(dir, ext, callback) {
 /*
 * EXPORT AN ANONYMOUS OBJECT (gebaseerd op exercise 6, wel geen correcte oplossing)
 * Dit was een voor uit te zoeken hoe ik. mymodule.funcNames kon gebruiken
+* https://darrenderidder.github.io/talks/ModulePatterns/#/8
 */
 /*
 fs = require('fs')
