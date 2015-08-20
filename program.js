@@ -28,7 +28,7 @@ console.log(count)
 /*
 * Exercise 3    "MY FIRST I/O!"
 */
-
+/*
 // load node core libraries
 var fs = require('fs') //filesystem
 
@@ -49,12 +49,24 @@ var content = fs.readFileSync(process.argv[2])
 // maar er toch een extra index is voor de laatste zin
 var count = content.toString().split('\n').length - 1
 console.log(count)
+*/
 
 
+/*
+* Exercise 4    "MY FIRST ASYNC I/O!"
+*/
 
+var fs = require('fs')
 
+// collect de value van via een callback function
+// asyncrone de nodejs way
 
-
+// note: we hebben hier als 2de argument 'utf8' meegegeven aan de filesystem
+// dit converteerd automatisch de bufferObject naar een string voor ons.
+// waardoor we niet gebruik moeten maken van de toString functie
+fs.readFile(process.argv[2], 'utf8', function(err, data){
+    console.log(data.split('\n').length - 1)
+})
 
 
 
