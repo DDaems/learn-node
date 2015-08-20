@@ -134,7 +134,7 @@ mymod(dir, ext, function(err, data) {
  String contents of each "data" event from the response to a new line on the console (stdout).
  -------------------------------------------------------------------------------
 */
-
+/*
 var http = require('http') // core module
 var url = process.argv[2]
 
@@ -156,4 +156,51 @@ if(url) {
         
         console.log("Got error: " + e.message)
     })
+}
+*/
+
+
+/*
+* Exercise 8: HTTP CONNECT
+*/
+/*
+ Write a program that performs an HTTP GET request to a URL provided to you as the first command-line argument. Collect all
+ data from the server (not just the first "data" event) and then write two lines to the console (stdout).
+
+ The first line you write should just be an integer representing the number of characters received from the server. The 
+ second line should contain the complete String of characters sent by the server.
+ -------------------------------------------------------------------------------
+ <http://npm.im/bl> $ npm install bl
+
+ bl has a stream piped into it and will collect the data for you. Once the stream has
+ ended, a callback will be fired with the data:
+
+    response.pipe(bl(function (err, data) {  ...  }))
+*/
+
+var http = require('http') // core module
+var url = process.argv[2]
+
+if(url) {
+
+    http.get(url, function(response) {
+        response.setEncoding('utf8')
+        
+        var dataArray = []
+        response.on("data", function(data) {
+            dataArray.push(data)
+        })
+        
+        response.on("end", function() {
+            // var str = dataArray.toString() // dit joined een array met een comma seperator
+            // hier kan ik zelf een seperator kiezen
+            var str = dataArray.join("")
+            console.log(str.length)
+            console.log(str)
+        })
+        
+    }).on('error', function(e) {
+        
+        console.log("Got error: " + e.message)
+    })   
 }
